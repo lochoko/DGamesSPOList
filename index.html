@@ -1,0 +1,196 @@
+<html>
+<head>
+<Title>Destiny Games Special Order List</title>
+<style>
+body {
+background-color: darkgray;
+font-size: 17px;
+font-family: "Arial";
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 5px;
+}
+a:visited{
+  color:blue;
+}
+th {text-align: left;}
+
+#step2{
+	visibility:hidden;
+}
+
+#step3{
+	visibility:hidden;
+}
+
+#pi-img {
+    opacity: 0.4;
+    filter: alpha(opacity=40); /* For IE8 and earlier */
+}
+
+#pi-img:hover {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+</style>
+<script>
+function startPre(CUPC, CGame) {
+document.getElementById("CID").value = document.getElementById("CustID").value; 
+document.getElementById("CUPC").value = CUPC; 
+document.getElementById("CName").value = CGame;
+document.getElementById("step3").style.visibility= 'visible' ;
+document.getElementById("txtGame").style.backgroundColor = "rgba(0,0,0,0)";
+		document.getElementById("txtGame").style.borderStyle = "";
+		document.getElementById("step2").style.borderStyle = "";
+		document.getElementById("step3").style.borderStyle = "outset";
+		document.getElementById("step3").style.borderWidth = "5px";
+document.getElementById("step2").style.backgroundColor = "rgba(0,0,0,0)";
+}
+
+function refresh () {
+location.reload();
+}
+
+function showUser(str) {
+    if (str == "") {
+        document.getElementById("txtHint").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("txtHint").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","custid.php?q="+str,true);
+        xmlhttp.send();
+		document.getElementById("step1").style.backgroundColor = "rgba(0,0,0,0)";
+		document.getElementById("step1").style.borderStyle = "";
+		document.getElementById("txtHint").style.borderStyle = "outset";
+		document.getElementById("txtHint").style.borderWidth = "5px";
+    }
+	
+}
+function showGame(str,game) {
+if (str == "") {
+str = ".";
+}
+    if (game == "") {
+        document.getElementById("txtGame").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("txtGame").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","game.php?q="+str+"&g="+game,true);
+        xmlhttp.send();
+    }
+	document.getElementById("step2").style.backgroundColor = "rgba(204,255,153,.8)";
+		document.getElementById("txtGame").style.borderStyle = "outset";
+		document.getElementById("txtGame").style.borderWidth = "5px";
+}
+
+function insertSpec(str,game) {
+    if (str == "") {
+        document.getElementById("submit").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("submit").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","spec.php?q="+str+"&g="+game,true);
+        xmlhttp.send();
+    }
+}
+
+function step2(){
+  // alert("cheked the button - worked");
+  document.getElementById("step2").style.visibility= 'visible' ;
+  document.getElementById("txtHint").style.backgroundColor = "rgba(0,0,0,0)";
+  		document.getElementById("txtHint").style.borderStyle = "";
+		document.getElementById("step2").style.borderStyle = "outset";
+		document.getElementById("step2").style.borderWidth = "5px";
+  var text_input = document.getElementById ('GName');
+  text_input.focus ();
+  text_input.select ();
+}
+
+window.onload = function(){
+  document.getElementById ('GName').value = "";
+  document.getElementById ('GCat').value = "";  
+  document.getElementById ('CID').value = "";
+  document.getElementById ('CUPC').value = ""; 
+  document.getElementById ('CName').value = ""; 
+  var text_input = document.getElementById ('CustID');
+  text_input.value = "";
+  text_input.focus ();
+  text_input.select ();
+}
+
+
+</script>
+</head>
+<body>
+<div id="step3" style="float: left; position: absolute; left: 830px; text-align: right; background-color: rgba(230,255,255,.8);" align="right">
+<b><u>Step 5: Ensure everything below is correct, then click Submit.</b></u><br>
+<form onsubmit="return false;">
+Customer ID: <input type="text" name="CID" id="CID" onkeydown="return false;">&nbsp;<br>
+UPC: <input type="text" name="CUPC" id="CUPC" onkeydown="return false;">&nbsp;<br>
+Game: <input type="text" name="CName" id="CName" onkeydown="return false;">&nbsp;<br>
+<input type="submit" value="Submit" onclick="insertSpec(CID.value,CUPC.value)">&nbsp;<input type="button" value="Cancel" onclick="refresh()">&nbsp;
+</form>
+<div id="submit"></div>
+</div>
+
+<div id="txtHint" style="width: 410px; float: left; position: absolute; left: 420px; text-align: left; background-color: rgba(230,255,255,.8);"></div>
+<div id="step1" style="width: 410px; height: 50px; background-color: rgba(230,255,255,.8); border-style: outset; border-width: 5px;" align="right">
+<form onsubmit="return false;">
+&nbsp;<b><u>Step 1: Verify the customer is in the POS System.</b></u>&nbsp;<br>
+Customer Phone Number: <input type="text" name="CustID" id="CustID" onchange="showUser(this.value)">&nbsp;<br>
+</form>
+<br><br><br>
+<div id="step2" style="position: absolute; left: 2.5%; background-color: rgba(230,255,255,.8); width: 430px;">                                                                                                                                                                        
+<form onsubmit="return false;" >
+<b><u>Step 3: Search for the Game using the boxes below.</b></u>&nbsp;<br>
+Game Name: <input type="text" id="GName" label="Name">&nbsp;<br>
+Category / System: <input type="text" id="GCat" label="Category">&nbsp;<br>
+<input type="submit" value="Search" onclick="showGame(GCat.value,GName.value)">&nbsp;
+</form>
+</div>
+</div>
+<div id="txtGame" style="position:absolute; top: 245px; left: 2.5%; width: 95%; background-color: rgba(230,255,255,.8);"><b></b></div>
+
+<div id="Pi" style="position: absolute; bottom: 0; right: 0;"><a href="admin.html"><img id="pi-img" src="pi.png" name="pi" width="15px" onmouseover="pi.width='30'; Pi.opacity='1';" onmouseout="pi.width='15';"></a></div>
+</body>
+</html>

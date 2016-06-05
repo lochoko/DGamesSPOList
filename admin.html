@@ -1,0 +1,257 @@
+<html>
+<head>
+<style>
+body {
+background-color: darkgray;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table, td, th {
+    border: 1px solid black;
+    padding: 5px;
+}
+a:visited{
+  color:blue;
+}
+th {text-align: left;}
+
+
+</style>
+<script>
+
+function showEmpl() {
+            if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("UpdatePHP").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","employee.php",true);
+        xmlhttp.send();
+	
+}
+
+function showClose() {
+            if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("UpdatePHP").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","close.php",true);
+        xmlhttp.send();
+	
+}
+
+function searchSPO(str) {
+    if (str == "") {
+        document.getElementById("UpdatePHP").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("UpdatePHP").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","searchSPO.php?q="+str,true);
+        xmlhttp.send();
+
+    }
+	
+}
+
+function SPOCleanup(str) {
+    if (str == "") {
+        document.getElementById("UpdatePHP").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("UpdatePHP").innerHTML = xmlhttp.responseText;
+            }
+        }
+		
+		if (str == "2") {
+			xmlhttp.open("GET","pre2.php",true);
+			xmlhttp.send();
+		} else {
+			xmlhttp.open("GET","pre3.php",true);
+			xmlhttp.send();		
+		}
+
+    }
+	
+}
+
+function closeSPO(str,name,game,search) {
+    if (str == "") {
+        document.getElementById("UpdatePHP").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("UpdatePHP").innerHTML = xmlhttp.responseText;
+            }
+        }
+		
+		var r = window.confirm("Are you sure you want to close out the following Special Order?\nName: "+name+"\nGame: "+game);
+			if (r == true) {
+				xmlhttp.open("GET","closeSPO.php?q="+str+"&s="+search,true);
+				xmlhttp.send();
+			}
+    }
+	
+}
+
+function openSPO(str,name,game,search) {
+    if (str == "") {
+        document.getElementById("UpdatePHP").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("UpdatePHP").innerHTML = xmlhttp.responseText;
+            }
+        }
+		
+		var r = window.confirm("Are you sure you want to re-open the following Special Order?\nName: "+name+"\nGame: "+game);
+			if (r == true) {
+				xmlhttp.open("GET","openSPO.php?q="+str+"&s="+search,true);
+				xmlhttp.send();
+			}
+    }
+	
+}
+
+function showGame(str,game) {
+if (str == "") {
+str = ".";
+}
+    if (game == "") {
+        document.getElementById("UpdatePHP").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("UpdatePHP").innerHTML = xmlhttp.responseText;
+            }
+        }
+        xmlhttp.open("GET","gamesearch.php?q="+str+"&g="+game,true);
+        xmlhttp.send();
+    }
+}
+
+function searchID(str) {
+    if (str == "") {
+        document.getElementById("UpdatePHP").innerHTML = "";
+        return;
+    } else { 
+        if (window.XMLHttpRequest) {
+            // code for IE7+, Firefox, Chrome, Opera, Safari
+            xmlhttp = new XMLHttpRequest();
+        } else {
+            // code for IE6, IE5
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+        }
+        xmlhttp.onreadystatechange = function() {
+            if (xmlhttp.readyState == 4 && xmlhttp.status == 200) {
+                document.getElementById("UpdatePHP").innerHTML = xmlhttp.responseText;
+            }
+        }
+		
+	if (document.getElementById('SPOClosed').checked) {	
+        xmlhttp.open("GET","SPOID.php?q="+str+"&g=C&s=ID",true);
+        xmlhttp.send();
+	} else {
+        xmlhttp.open("GET","SPOID.php?q="+str+"&g=O&s=ID",true);
+        xmlhttp.send();
+    }
+	
+ }
+}
+</script>
+<body>
+<div id="UpdatePHP" style="float: left; position: absolute; left: 350px; width: 75%; text-align: left; background-color: rgba(230,255,255,.8); border-style: outset; border-width: 5px;"></div>
+<div id="6MO" style="width: 330px; background-color: rgba(230,255,255,.8); border-style: outset; border-width: 5px;">
+<b><i>Close Special Orders over 6 Months.</b></i><br><br>
+
+<b>Step 1:</b> <a href="#" OnClick="showEmpl()">Update Employee Requests</a><br><br>
+
+<b>Step 2:</b> <a href="#" OnClick="showClose()">Close Special Orders older than 6 Months</a><br></div>
+<br>
+
+<div id="SPOSearch" style="width: 330px; background-color: rgba(230,255,255,.8); border-style: outset; border-width: 5px;">
+<b><i>Search for Special Orders</b></i><br><br>
+<form onsubmit="return false;">
+Scan Yellow Sticker: <input type="text" name="SPOUPC" id="SPOUPC" onClick="this.select();" onChange="searchSPO(this.value); this.select();" style="font-size: 18px; width: 180px;">&nbsp;<br><br>
+Enter Customer Number: <input type="text" name="SPOID" id="SPOID" onclick="this.select();" onChange="searchID(this.value); this.select();" style="font-size: 18px; width: 155px;">&nbsp;<br>
+<label style="float: right;"><input type="checkbox" id="SPOClosed" name="SPOClosed" onChange="searchID(SPOID.value);">Search Closed Special Orders</label>&nbsp;&nbsp;&nbsp;<br>
+</form>
+</div>
+<br>
+<div id="GameSearch" style="width: 330px; background-color: rgba(230,255,255,.8); border-style: outset; border-width: 5px;">
+<b><i>Search for Games</b></i><br><br>
+
+<form onsubmit="return false;">
+Game Name: <input type="text" id="GName" label="Name" style="font-size: 18px; width: 242px;">&nbsp;<br>
+Category / System: <input type="text" id="GCat" label="Category" style="font-size: 18px; width: 207px;">&nbsp;<br>
+<input type="submit" value="Search" style="float: right;" onclick="showGame(GCat.value,GName.value)">&nbsp;<br>
+Or Search via the UPC number</form>
+UPC: 
+<input type="text" name="SearchUPC" id="SearchUPC" onClick="this.select();" onChange="showGame('UPC',SearchUPC.value); this.select();" style="font-size: 18px; width: 180px;">&nbsp;<br>
+</div>
+
+<div id="Return" style="position: absolute; bottom: 0; left: 0; width: 100px; background-color: rgba(230,255,255,.8); border-style: outset; border-width: 5px;">&nbsp;&nbsp;<a href="index.html">Back to SPO</a></div>
+
+</body></html>

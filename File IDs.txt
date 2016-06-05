@@ -1,0 +1,19 @@
+admin.html
+index.html
+
+config.php     -- Database Configuration
+
+custid.php     -- Main  - Pulls Customer name from phone number; verify it is correct
+game.php       -- Main  - Shows list of games that match the search requirements
+spec.php       -- Main  - Adds customer to SPO list
+
+close.php      -- Admin - Shows SPO older than 6 months
+closeSPO.php   -- Admin - Closes the specified SPO (Used in ID and UPC Search)
+employee.php   -- Admin - Shows Employee SPO older than 6 months
+gamesearch.php -- Admin - Shows list of games that match search requirements
+openSPO.php    -- Admin - Re-open closed SPOs
+pre2.php       -- Admin - 2nd step for employee.php; Moves all Employee SPO to today's date
+pre3.php       -- Admin - 2nd step for close.php; Closes all SPOs older than 6 months
+searchSPO.php  -- Admin - Shows list of people currently on SPO list for specific game
+SPOID.php      -- Admin - Shows list of SPO for specific customer
+
